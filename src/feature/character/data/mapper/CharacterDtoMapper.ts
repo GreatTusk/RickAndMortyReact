@@ -6,5 +6,6 @@ export function characterDtoToCharacter(characterDto: CharacterDto): Character {
     name: characterDto.name,
     species: characterDto.species,
     state: characterDto.status as 'Alive' | 'Dead' | 'unknown',
+    imgUrl: characterDto.image
   };
 }
