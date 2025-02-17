@@ -1,5 +1,5 @@
 import { Character } from "../../domain/Character";
-import { CharacterDatasource } from "../../domain/CharacterDataSource";
+import { CharacterDatasource } from "../../domain/CharacterDatasource";
 import { CharacterDtos } from "../dto/CharacterDto";
 import { characterDtoToCharacter } from "../mapper/CharacterDtoMapper";
 

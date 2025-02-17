@@ -1,5 +1,13 @@
+import { RickAndMortyCharacterDatasource } from "./feature/character/data/datasource/RickAndMortyCharacterDatasource";
+import { CharacterScreen } from "./feature/character/ui/CharacterScreen";
+
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello World!</h1>
+  const characterDatasource = new RickAndMortyCharacterDatasource();
+  return (
+    <main>
+      <CharacterScreen characterDatasource={characterDatasource} />
+    </main>
+  );
 }
 
 export default App;
