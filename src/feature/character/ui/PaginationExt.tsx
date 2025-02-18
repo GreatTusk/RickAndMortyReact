@@ -10,7 +10,7 @@ export const renderPaginationItems = (
   handlePageChange: (page: number) => void
 ) => {
   const items = [];
-  const maxVisiblePages = 5;
+  const maxVisiblePages = 4;
   const halfVisible = Math.floor(maxVisiblePages / 2);
 
   let startPage = Math.max(1, currentPage - halfVisible);

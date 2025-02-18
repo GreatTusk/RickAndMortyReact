@@ -9,7 +9,7 @@ describe("renderPaginationItems", () => {
       <>{renderPaginationItems(1, 10, handlePageChange)}</>
     );
 
-    expect(getAllByTestId("pagination-item").length).toBe(6); // 1, 2, 3, 4, 5, ..., 10
+    expect(getAllByTestId("pagination-item").length).toBe(5); // 1, 2, 3, 4, ..., 10
     expect(getAllByTestId("pagination-ellipsis").length).toBe(1);
   });
 
@@ -19,7 +19,7 @@ describe("renderPaginationItems", () => {
       <>{renderPaginationItems(5, 10, handlePageChange)}</>
     );
 
-    expect(getAllByTestId("pagination-item").length).toBe(7); // 1, ..., 3, 4, 5, 6, 7, ..., 10
+    expect(getAllByTestId("pagination-item").length).toBe(6); // 1, ..., 3, 4, 5, 6, ..., 10
     expect(getAllByTestId("pagination-ellipsis").length).toBe(2);
   });
 
@@ -29,7 +29,7 @@ describe("renderPaginationItems", () => {
       <>{renderPaginationItems(10, 10, handlePageChange)}</>
     );
 
-    expect(getAllByTestId("pagination-item").length).toBe(6); // 1, ..., 6, 7, 8, 9, 10
+    expect(getAllByTestId("pagination-item").length).toBe(5); // 1, ..., 7, 8, 9, 10
     expect(getAllByTestId("pagination-ellipsis").length).toBe(1);
   });
 

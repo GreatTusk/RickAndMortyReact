@@ -78,7 +78,7 @@ export const CharacterScreen = ({
       <img
         src="Rick_and_Morty.svg"
         alt="Rick and Morty Logo"
-        className="h-32 my-12"
+        className="h-32 my-12 px-4 sm:px-0 max-w-sm"
       />
 
       <div className="flex w-full max-w-sm items-center space-x-2 mb-4 px-4 sm:px-0">
