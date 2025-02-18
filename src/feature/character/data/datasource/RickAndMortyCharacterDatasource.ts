@@ -26,7 +26,7 @@ export class RickAndMortyCharacterDatasource implements CharacterDatasource {
       queryParams.append("page", page.toString())
 
       const response = await fetch(`${CHARACTER_API_URL}?${queryParams.toString()}`)
-      console.log(`${CHARACTER_API_URL}?${queryParams.toString()}`)
+
       if (!response.ok) {
         throw new Error(`Error fetching characters: ${response.statusText}`)
       }
@@ -36,11 +36,12 @@ export class RickAndMortyCharacterDatasource implements CharacterDatasource {
         characters: characterDto.results.map(characterDtoToCharacter),
         pages: characterDto.info.pages,
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.error(error)
+      // Regardless of the error, the user will only see a "No results" message
       return {
         characters: [],
-        pages: 0,
+        pages: -1,
       }
     }
   }

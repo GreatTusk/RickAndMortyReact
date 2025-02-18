@@ -1,4 +1,4 @@
-import { PaginationItem, PaginationLink, PaginationEllipsis } from "@/components/ui/pagination"
+import { PaginationItem, PaginationLink, PaginationEllipsis } from "@/components/ui/pagination";
 
 export const renderPaginationItems = (
   currentPage: number,
@@ -18,18 +18,18 @@ export const renderPaginationItems = (
 
   if (startPage > 1) {
     items.push(
-      <PaginationItem key="start">
+      <PaginationItem key="start" data-testid="pagination-item">
         <PaginationLink onClick={() => handlePageChange(1)}>1</PaginationLink>
       </PaginationItem>
     );
     if (startPage > 2) {
-      items.push(<PaginationEllipsis key="ellipsis-start" />);
+      items.push(<PaginationEllipsis key="ellipsis-start" data-testid="pagination-ellipsis" />);
     }
   }
 
   for (let i = startPage; i <= endPage; i++) {
     items.push(
-      <PaginationItem key={i}>
+      <PaginationItem key={i} data-testid="pagination-item">
         <PaginationLink
           onClick={() => handlePageChange(i)}
           isActive={currentPage === i}
@@ -42,10 +42,10 @@ export const renderPaginationItems = (
 
   if (endPage < totalPages) {
     if (endPage < totalPages - 1) {
-      items.push(<PaginationEllipsis key="ellipsis-end" />);
+      items.push(<PaginationEllipsis key="ellipsis-end" data-testid="pagination-ellipsis" />);
     }
     items.push(
-      <PaginationItem key="end">
+      <PaginationItem key="end" data-testid="pagination-item">
         <PaginationLink onClick={() => handlePageChange(totalPages)}>
           {totalPages}
         </PaginationLink>
