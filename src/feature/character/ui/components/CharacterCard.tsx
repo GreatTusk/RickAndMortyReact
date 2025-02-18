@@ -5,15 +5,9 @@ import {
   CardHeader,
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Heart, Skull, HelpCircle } from "lucide-react"
+import { statusIcon } from "./StatusIcon";
 
 export const CharacterCard = ({ character }: { character: Character }) => {
-  const stateIcon = {
-    Alive: <Heart className="w-4 h-4 text-green-500 dark:text-green-400" />,
-    Dead: <Skull className="w-4 h-4 text-red-500 dark:text-red-400" />,
-    unknown: <HelpCircle className="w-4 h-4 text-gray-500 dark:text-gray-400" />,
-  }
-
   return (
     <Card className="w-64 overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-white dark:bg-gray-800">
       <CardHeader className="p-0">
@@ -30,7 +24,7 @@ export const CharacterCard = ({ character }: { character: Character }) => {
             {character.species}
           </Badge>
           <div className="flex items-center gap-1">
-            {stateIcon[character.state]}
+            {statusIcon[character.state]}
             <span className="text-sm text-gray-600 dark:text-gray-300">{character.state}</span>
           </div>
         </div>

@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Filter } from "lucide-react";
+import { Filter, Heart, User } from "lucide-react";
 import {
   Pagination,
   PaginationContent,
@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/pagination";
 import { useDebounce } from "use-debounce";
 import { renderPaginationItems } from "./PaginationExt";
+import { statusIcon } from "./components/StatusIcon";
 
 export const CharacterScreen = ({
   characterDatasource,
@@ -38,9 +39,11 @@ export const CharacterScreen = ({
   const [debouncedQuery] = useDebounce(searchQuery, 300);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetch() {
+      setLoading(true);
       const fetchedCharacters = await characterDatasource.fetchCharacters(
         debouncedQuery,
         speciesFilter,
@@ -49,6 +52,7 @@ export const CharacterScreen = ({
       );
       setCharacters(fetchedCharacters.characters);
       setTotalPages(fetchedCharacters.pages);
+      setLoading(false);
     }
     fetch();
   }, [characterDatasource, debouncedQuery, speciesFilter, statusFilter, page]);
@@ -81,7 +85,7 @@ export const CharacterScreen = ({
       <img
         src="Rick_and_Morty.svg"
         alt="Rick and Morty Logo"
-        className="h-32 my-16"
+        className="h-32 my-12"
       />
 
       <div className="flex w-full max-w-sm items-center space-x-2 mb-4">
@@ -96,8 +100,12 @@ export const CharacterScreen = ({
       <div className="flex w-full max-w-sm items-center space-x-2 mb-8">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="secondary" className="w-full">
-              Status <Filter className="ml-2 h-4 w-4" />
+            <Button variant="secondary" className="w-full justify-between">
+              <span className="flex items-center">
+                Status
+                <Heart className="ml-2 h-4 w-4" />
+              </span>
+              <Filter className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
@@ -112,10 +120,23 @@ export const CharacterScreen = ({
               }
             >
               <DropdownMenuRadioItem value="All">All</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="Alive">Alive</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="Dead">Dead</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="Alive">
+                <span className="flex justify-between w-full">
+                  <span>Alive</span>
+                  {statusIcon["Alive"]}
+                </span>
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="Dead">
+                <span className="flex justify-between w-full">
+                  <span>Dead</span>
+                  {statusIcon["Dead"]}
+                </span>
+              </DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="unknown">
-                Unknown
+                <span className="flex justify-between w-full">
+                  <span>Unknown</span>
+                  {statusIcon["unknown"]}
+                </span>
               </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
@@ -123,8 +144,12 @@ export const CharacterScreen = ({
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="secondary" className="w-full">
-              Species <Filter className="ml-2 h-4 w-4" />
+            <Button variant="secondary" className="w-full justify-between">
+              <span className="flex items-center">
+                Species
+                <User className="ml-2 h-4 w-4" />
+              </span>
+              <Filter className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
@@ -145,7 +170,7 @@ export const CharacterScreen = ({
       </div>
 
       <section className="flex justify-center items-center">
-        <CharacterGrid characters={characters} />
+        <CharacterGrid characters={characters} isLoading={loading} />
       </section>
 
       <Pagination className="my-8">
