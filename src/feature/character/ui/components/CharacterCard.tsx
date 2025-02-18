@@ -12,7 +12,7 @@ export const CharacterCard = ({ character }: { character: Character }) => {
     <Card className="w-64 overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-white dark:bg-gray-800">
       <CardHeader className="p-0">
         <img
-          src={character.imgUrl || "/placeholder.svg"}
+          src={character.imgUrl}
           alt={`${character.name}'s image`}
           className="w-full h-64 object-cover"
         />

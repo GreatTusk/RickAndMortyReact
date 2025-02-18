@@ -4,17 +4,7 @@ import type { Character } from "../domain/Character";
 import type { CharacterDatasource } from "../domain/CharacterDatasource";
 import { CharacterGrid } from "./components/CharacterCardGrid";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Filter, Heart, SearchIcon, User } from "lucide-react";
+import { Heart, SearchIcon, User } from "lucide-react";
 import {
   Pagination,
   PaginationContent,
@@ -24,7 +14,7 @@ import {
 } from "@/components/ui/pagination";
 import { useDebounce } from "use-debounce";
 import { renderPaginationItems } from "./PaginationExt";
-import { statusIcon } from "./components/StatusIcon";
+import { FilterDropdown } from "./components/FilterDropdown";
 
 export const CharacterScreen = ({
   characterDatasource,
@@ -35,10 +25,10 @@ export const CharacterScreen = ({
   const [statusFilter, setStatusFilter] = useState<
     "Alive" | "Dead" | "unknown" | "All"
   >("All");
-  const [speciesFilter, setSpeciesFilter] = useState<string>("All");
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [speciesFilter, setSpeciesFilter] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery] = useDebounce(searchQuery, 300);
-  const [totalPages, setTotalPages] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const page = parseInt(searchParams.get("page") || "1", 10);
@@ -102,75 +92,24 @@ export const CharacterScreen = ({
       </div>
 
       <div className="flex w-full max-w-sm items-center space-x-2 mb-8">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="secondary" className="w-full justify-between">
-              <span className="flex items-center">
-                Status
-                <Heart className="ml-2 h-4 w-4" />
-              </span>
-              <Filter className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Filter by Status</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuRadioGroup
-              value={statusFilter}
-              onValueChange={(status) =>
-                handleStatusFilterChange(
-                  status as "Alive" | "Dead" | "unknown" | "All"
-                )
-              }
-            >
-              <DropdownMenuRadioItem value="All">All</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="Alive">
-                <span className="flex justify-between w-full">
-                  <span>Alive</span>
-                  {statusIcon["Alive"]}
-                </span>
-              </DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="Dead">
-                <span className="flex justify-between w-full">
-                  <span>Dead</span>
-                  {statusIcon["Dead"]}
-                </span>
-              </DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="unknown">
-                <span className="flex justify-between w-full">
-                  <span>Unknown</span>
-                  {statusIcon["unknown"]}
-                </span>
-              </DropdownMenuRadioItem>
-            </DropdownMenuRadioGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
-
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="secondary" className="w-full justify-between">
-              <span className="flex items-center">
-                Species
-                <User className="ml-2 h-4 w-4" />
-              </span>
-              <Filter className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Filter by Species</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuRadioGroup
-              value={speciesFilter}
-              onValueChange={handleSpeciesFilterChange}
-            >
-              {uniqueSpecies.map((species) => (
-                <DropdownMenuRadioItem key={species} value={species}>
-                  {species}
-                </DropdownMenuRadioItem>
-              ))}
-            </DropdownMenuRadioGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <FilterDropdown
+          label="Status"
+          icon={<Heart className="ml-2 h-4 w-4" />}
+          value={statusFilter}
+          options={["All", "Alive", "Dead", "unknown"]}
+          onChange={(status) =>
+            handleStatusFilterChange(
+              status as "Alive" | "Dead" | "unknown" | "All"
+            )
+          }
+        />
+        <FilterDropdown
+          label="Species"
+          icon={<User className="ml-2 h-4 w-4" />}
+          value={speciesFilter}
+          options={uniqueSpecies}
+          onChange={handleSpeciesFilterChange}
+        />
       </div>
 
       <section className="flex justify-center items-center">
