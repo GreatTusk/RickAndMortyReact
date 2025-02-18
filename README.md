@@ -106,6 +106,31 @@ This project uses the [Rick and Morty API](https://rickandmortyapi.com/) to fetc
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+## CI/CD Integration
+
+This project is integrated with Azure Static Web Apps for seamless deployment using GitHub Actions. The CI/CD pipeline automatically builds and deploys the application when code is pushed to the `main` branch or when pull requests are merged.
+
+### Workflow Summary:
+1. On each push to `main`, the application is built and deployed to Azure Static Web Apps.
+2. Pull requests trigger validation builds without affecting the production deployment.
+3. Merged or updated pull requests automatically deploy the latest changes.
+4. Closed pull requests trigger cleanup actions.
+
+The workflow file is located in `.github/workflows/azure-static-web-apps.yml` and includes:
+
+- Checkout of the repository
+- Installation of dependencies
+- Authentication via GitHub Actions OpenID Connect
+- Deployment to Azure Static Web Apps
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
