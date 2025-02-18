@@ -36,7 +36,7 @@ A React application built with Vite that allows users to explore characters from
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/GreatTusk/rick-and-morty-react.git
+git clone https://github.com/GreatTusk/RickAndMortyReact.git
 cd rick-and-morty-react
 ```
 
