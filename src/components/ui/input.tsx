@@ -1,22 +1,44 @@
-import * as React from "react"
+import { cn } from '@/lib/utils';
+import * as React from 'react';
 
-import { cn } from "@/lib/utils"
-
-const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
-  ({ className, type, ...props }, ref) => {
+export interface InputProps extends React.ComponentProps<'input'> {
+  left?: React.ReactNode;
+  right?: React.ReactNode;
+}
+/* https://github.com/shadcn-ui/ui/discussions/1552#discussioncomment-11858277 */
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, left, right, ...props }, ref) => {
     return (
-      <input
-        type={type}
+      <label
         className={cn(
-          "flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 py-2 text-base ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-neutral-950 placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-950 dark:file:text-neutral-50 dark:placeholder:text-neutral-400 dark:focus-visible:ring-neutral-300",
-          className
+          'flex-row gap-3 flex h-9 w-full items-center px-3 rounded-md border border-input bg-transparent shadow-sm transition-colors focus-within:ring-1 focus-within:ring-ring disabled:opacity-50',
+          className,
         )}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
-Input.displayName = "Input"
+      >
+        {left && (
+          <div className="flex h-full items-center text-muted-foreground [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0">
+            {left}
+          </div>
+        )}
+        <input
+          ref={ref}
+          className={cn(
+            'h-full flex-1 bg-transparent text-sm placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed',
+          )}
+          type={type}
+          {...props}
+        />
+        {right && (
+          <div className="h-full flex items-center text-muted-foreground [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0">
+            {right}
+          </div>
+        )}
+      </label>
+    );
+  },
+);
 
-export { Input }
+Input.displayName = 'Input';
+
+export { Input };
+

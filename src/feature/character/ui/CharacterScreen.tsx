@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Filter, Heart, User } from "lucide-react";
+import { Filter, Heart, SearchIcon, User } from "lucide-react";
 import {
   Pagination,
   PaginationContent,
@@ -93,6 +93,7 @@ export const CharacterScreen = ({
           type="text"
           placeholder="Enter a character..."
           value={searchQuery}
+          left={<SearchIcon />}
           onChange={handleSearchChange}
         />
       </div>
