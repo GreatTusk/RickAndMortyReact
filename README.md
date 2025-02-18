@@ -96,7 +96,6 @@ This project uses the [Rick and Morty API](https://rickandmortyapi.com/) to fetc
 - Status (Alive, Dead, Unknown)
 - Species
 - Image
-- Other character details
 
 ## Contributing
 
