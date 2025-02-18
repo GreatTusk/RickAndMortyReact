@@ -74,7 +74,7 @@ export const CharacterScreen = ({
   };
 
   return (
-    <section className="flex flex-col items-center">
+    <section className="flex flex-col items-center bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <img
         src="Rick_and_Morty.svg"
         alt="Rick and Morty Logo"
@@ -86,8 +86,9 @@ export const CharacterScreen = ({
           type="text"
           placeholder="Enter a character..."
           value={searchQuery}
-          left={<SearchIcon />}
+          left={<SearchIcon className="text-gray-500 dark:text-gray-400" />}
           onChange={handleSearchChange}
+          className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
         />
       </div>
 
@@ -120,13 +121,19 @@ export const CharacterScreen = ({
         <PaginationContent>
           <PaginationItem>
             {page > 1 && (
-              <PaginationPrevious onClick={() => handlePageChange(page - 1)} />
+              <PaginationPrevious
+                onClick={() => handlePageChange(page - 1)}
+                className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              />
             )}
           </PaginationItem>
           {renderPaginationItems(page, totalPages, handlePageChange)}
           <PaginationItem>
             {page < totalPages && (
-              <PaginationNext onClick={() => handlePageChange(page + 1)} />
+              <PaginationNext
+                onClick={() => handlePageChange(page + 1)}
+                className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              />
             )}
           </PaginationItem>
         </PaginationContent>

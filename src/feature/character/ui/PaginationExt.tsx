@@ -1,4 +1,8 @@
-import { PaginationItem, PaginationLink, PaginationEllipsis } from "@/components/ui/pagination";
+import {
+  PaginationItem,
+  PaginationLink,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
 
 export const renderPaginationItems = (
   currentPage: number,
@@ -19,11 +23,21 @@ export const renderPaginationItems = (
   if (startPage > 1) {
     items.push(
       <PaginationItem key="start" data-testid="pagination-item">
-        <PaginationLink onClick={() => handlePageChange(1)}>1</PaginationLink>
+        <PaginationLink
+          onClick={() => handlePageChange(1)}
+          className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+        >
+          1
+        </PaginationLink>
       </PaginationItem>
     );
     if (startPage > 2) {
-      items.push(<PaginationEllipsis key="ellipsis-start" data-testid="pagination-ellipsis" />);
+      items.push(
+        <PaginationEllipsis
+          key="ellipsis-start"
+          data-testid="pagination-ellipsis"
+        />
+      );
     }
   }
 
@@ -33,6 +47,7 @@ export const renderPaginationItems = (
         <PaginationLink
           onClick={() => handlePageChange(i)}
           isActive={currentPage === i}
+          className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
         >
           {i}
         </PaginationLink>
@@ -42,11 +57,20 @@ export const renderPaginationItems = (
 
   if (endPage < totalPages) {
     if (endPage < totalPages - 1) {
-      items.push(<PaginationEllipsis key="ellipsis-end" data-testid="pagination-ellipsis" />);
+      items.push(
+        <PaginationEllipsis
+          key="ellipsis-end"
+          data-testid="pagination-ellipsis"
+          className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+        />
+      );
     }
     items.push(
       <PaginationItem key="end" data-testid="pagination-item">
-        <PaginationLink onClick={() => handlePageChange(totalPages)}>
+        <PaginationLink
+          onClick={() => handlePageChange(totalPages)}
+          className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+        >
           {totalPages}
         </PaginationLink>
       </PaginationItem>
