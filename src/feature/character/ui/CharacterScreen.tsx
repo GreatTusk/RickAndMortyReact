@@ -81,18 +81,17 @@ export const CharacterScreen = ({
         className="h-32 my-12"
       />
 
-      <div className="flex w-full max-w-sm items-center space-x-2 mb-4">
+      <div className="flex w-full max-w-sm items-center space-x-2 mb-4 px-4 sm:px-0">
         <Input
           type="text"
           placeholder="Enter a character..."
           value={searchQuery}
           left={<SearchIcon className="text-gray-500 dark:text-gray-400" />}
           onChange={handleSearchChange}
-          className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+          className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 w-full sm:w-full"
         />
       </div>
-
-      <div className="flex w-full max-w-sm items-center space-x-2 mb-8">
+      <div className="flex flex-col sm:flex-row w-full max-w-sm items-center space-y-2 sm:space-y-0 sm:space-x-2 mb-8 px-4 sm:px-0">
         <FilterDropdown
           label="Status"
           icon={<Heart className="ml-2 h-4 w-4" />}
@@ -123,7 +122,7 @@ export const CharacterScreen = ({
             {page > 1 && (
               <PaginationPrevious
                 onClick={() => handlePageChange(page - 1)}
-                className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-800" 
+                className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-800"
               />
             )}
           </PaginationItem>
