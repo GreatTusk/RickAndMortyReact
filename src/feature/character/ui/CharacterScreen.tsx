@@ -123,7 +123,7 @@ export const CharacterScreen = ({
             {page > 1 && (
               <PaginationPrevious
                 onClick={() => handlePageChange(page - 1)}
-                className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-800" 
               />
             )}
           </PaginationItem>
@@ -132,7 +132,7 @@ export const CharacterScreen = ({
             {page < totalPages && (
               <PaginationNext
                 onClick={() => handlePageChange(page + 1)}
-                className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-800"
               />
             )}
           </PaginationItem>

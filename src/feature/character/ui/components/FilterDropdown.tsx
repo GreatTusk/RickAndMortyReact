@@ -28,7 +28,7 @@ export const FilterDropdown = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary" className="w-full justify-between">
+        <Button variant="secondary" className="w-full justify-between  dark:bg-gray-800 dark:hover:bg-gray-700">
           <span className="flex items-center">
             {label}
             {icon}

@@ -47,7 +47,9 @@ export const renderPaginationItems = (
         <PaginationLink
           onClick={() => handlePageChange(i)}
           isActive={currentPage === i}
-          className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+          className={`text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 ${
+            currentPage === i ? "dark:bg-gray-800 bg-gray-200" : ""
+          }`}
         >
           {i}
         </PaginationLink>
@@ -61,7 +63,7 @@ export const renderPaginationItems = (
         <PaginationEllipsis
           key="ellipsis-end"
           data-testid="pagination-ellipsis"
-          className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+          className="text-gray-700 dark:text-gray-300"
         />
       );
     }

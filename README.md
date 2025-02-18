@@ -109,3 +109,7 @@ This project uses the [Rick and Morty API](https://rickandmortyapi.com/) to fetc
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+### Disclaimer
+
+The Rick and Morty characters and assets used in this project are the property of their respective owners. This project is for educational purposes only and is not affiliated with or endorsed by the creators of Rick and Morty.
