@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 export const CharacterCardSkeleton = () => {
   return (
-    <Card className="w-64 overflow-hidden">
+    <Card className="w-64 overflow-hidden" data-testid="character-skeleton">
       <CardHeader className="p-0">
         <Skeleton className="w-full h-64" />
       </CardHeader>

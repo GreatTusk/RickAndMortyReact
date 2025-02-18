@@ -12,7 +12,10 @@ export const CharacterGrid = ({
 }) => {
   return (
     <div className="w-full max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div
+        data-testid="character-grid"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+      >
         {loading ? (
           Array.from({ length: 20 }).map((_, index) => (
             <CharacterCardSkeleton key={index} />
