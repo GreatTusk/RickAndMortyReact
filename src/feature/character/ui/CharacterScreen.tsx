@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import type { Character } from "../domain/Character";
 import type { CharacterDatasource } from "../domain/CharacterDatasource";
 import { CharacterGrid } from "./components/CharacterCardGrid";
@@ -37,9 +38,10 @@ export const CharacterScreen = ({
   const [speciesFilter, setSpeciesFilter] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [debouncedQuery] = useDebounce(searchQuery, 300);
-  const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = parseInt(searchParams.get("page") || "1", 10);
 
   useEffect(() => {
     async function fetch() {
@@ -60,25 +62,25 @@ export const CharacterScreen = ({
   const uniqueSpecies = ["All", ...new Set(characters.map((c) => c.species))];
 
   const handlePageChange = (newPage: number) => {
-    setPage(newPage);
+    setSearchParams({ page: newPage.toString() });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-    setPage(1);
+    setSearchParams({ page: "1" });
   };
 
   const handleStatusFilterChange = (
     value: "Alive" | "Dead" | "unknown" | "All"
   ) => {
     setStatusFilter(value);
-    setPage(1);
+    setSearchParams({ page: "1" });
   };
 
   const handleSpeciesFilterChange = (value: string) => {
     setSpeciesFilter(value);
-    setPage(1);
+    setSearchParams({ page: "1" });
   };
 
   return (

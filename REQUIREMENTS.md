@@ -1,10 +1,7 @@
-Prueba Técnica: Consumo de API y Frontend en React
-
 Objetivo
 
 Construir una aplicación en React que consuma una API pública y muestre la información de forma ordenada en el frontend.
 
- 
 
 Requisitos
 
