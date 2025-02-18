@@ -64,7 +64,9 @@ npm run build
 # Run tests
 npm run test
 ```
+## Tests
 
+This project includes unit tests to ensure the functionality of various components and data mappings. The tests are written using Vitest and can be found in the `test` directory.
 ## Project Structure
 
 The project follows a layered architecture approach:
